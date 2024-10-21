@@ -41,7 +41,7 @@ export const TodoItem: React.FC<Props> = ({
     setEditedTodoTitle(title);
   }, [completed, title]);
 
-  function handleDeleteTodo(todoId: number) {
+  const handleDeleteTodo = (todoId: number) => {
     setIsLoading(true);
     deleteTodo(todoId)
       .then(() => {
@@ -58,7 +58,7 @@ export const TodoItem: React.FC<Props> = ({
       .finally(() => {
         setIsLoading(false);
       });
-  }
+  };
 
   function handleToggleTodo(updatedTodo: Todo) {
     setIsLoading(true);
