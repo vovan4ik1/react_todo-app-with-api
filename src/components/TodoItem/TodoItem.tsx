@@ -92,7 +92,7 @@ export const TodoItem: React.FC<Props> = ({
       return;
     }
 
-    if (editedTodoTitle.trim()) {
+    if (!editedTodoTitle.trim()) {
       handleDeleteTodo(id);
 
       return;
