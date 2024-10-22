@@ -1,13 +1,13 @@
 import React from 'react';
 import { Todo } from '../../types/Todo';
 import { Error } from '../../types/Error';
-import cn from 'classnames';
+import classNames from 'classnames';
 import { USER_ID, addTodo, updateTodo } from '../../api/todos';
 
 type Props = {
   todos: Todo[];
-  completedTodos: Todo[];
   setTodos: React.Dispatch<React.SetStateAction<Todo[]>>;
+  completedTodos: Todo[];
   textField: React.RefObject<HTMLInputElement>;
   setErrorMessage: React.Dispatch<React.SetStateAction<Error>>;
   query: string;
@@ -105,11 +105,11 @@ export const Header: React.FC<Props> = ({
   };
 
   return (
-    <header className="todoappheader">
+    <header className="todoapp__header">
       {todos.length > 0 && (
         <button
           type="button"
-          className={cn('todoapptoggle-all', {
+          className={classNames('todoapp__toggle-all', {
             active: todos.length === completedTodos.length,
           })}
           data-cy="ToggleAllButton"
