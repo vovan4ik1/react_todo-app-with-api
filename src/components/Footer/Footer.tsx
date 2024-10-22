@@ -1,11 +1,11 @@
 import React from 'react';
+import classNames from 'classnames';
 import { Todo } from '../../types/Todo';
-import cn from 'classnames';
 import { Filter } from '../../types/Filter';
-import { Error } from '../../types/Error';
 import { deleteTodo } from '../../api/todos';
+import { Error } from '../../types/Error';
 
-interface Props {
+type Props = {
   setTodos: React.Dispatch<React.SetStateAction<Todo[]>>;
   activeTodos: Todo[];
   completedTodos: Todo[];
@@ -13,18 +13,18 @@ interface Props {
   setErrorMessage: React.Dispatch<React.SetStateAction<Error>>;
   setFilter: (filter: Filter) => void;
   setDeletingTodoIds: React.Dispatch<React.SetStateAction<number[]>>;
-}
+};
 
 export const Footer: React.FC<Props> = ({
+  setTodos,
   activeTodos,
   completedTodos,
-  setFilter,
-  filter,
-  setTodos,
   setErrorMessage,
+  filter,
+  setFilter,
   setDeletingTodoIds,
 }) => {
-  const handleClearCompleted = async () => {
+  async function handleClearCompleted() {
     const completedTodoIds = completedTodos.map(todo => todo.id);
 
     setDeletingTodoIds(completedTodoIds);
@@ -55,7 +55,7 @@ export const Footer: React.FC<Props> = ({
     }
 
     setDeletingTodoIds([]);
-  };
+  }
 
   return (
     <footer className="todoapp__footer" data-cy="Footer">
@@ -70,10 +70,10 @@ export const Footer: React.FC<Props> = ({
             key={filterOption}
             href={`#/${filterOption.toLowerCase()}`}
             onClick={() => setFilter(filterOption)}
-            className={cn('filter__link', {
+            className={classNames('filter__link', {
               selected: filter === filterOption,
             })}
-            data-cy={`FilterLink${filterOption.charAt(0).toUpperCase() + filterOption.slice(1)}`}
+            data-cy={`FilterLink${filterOption}`}
           >
             {filterOption}
           </a>

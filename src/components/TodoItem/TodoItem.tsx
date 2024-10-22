@@ -60,7 +60,7 @@ export const TodoItem: React.FC<Props> = ({
       });
   };
 
-  function handleToggleTodo(updatedTodo: Todo) {
+  const handleToggleTodo = (updatedTodo: Todo) => {
     setIsLoading(true);
     updateTodo(updatedTodo)
       .then(todo => {
@@ -81,9 +81,9 @@ export const TodoItem: React.FC<Props> = ({
         }, 3000);
       })
       .finally(() => setIsLoading(false));
-  }
+  };
 
-  function handleEditTodo(updatedTodo: Todo) {
+  const handleEditTodo = (updatedTodo: Todo) => {
     setIsLoading(true);
     if (editedTodoTitle.trim() === title) {
       setIsEditing(false);
@@ -92,7 +92,7 @@ export const TodoItem: React.FC<Props> = ({
       return;
     }
 
-    if (editedTodoTitle.trim() === '') {
+    if (editedTodoTitle.trim()) {
       handleDeleteTodo(id);
 
       return;
@@ -119,7 +119,7 @@ export const TodoItem: React.FC<Props> = ({
         }, 3000);
       })
       .finally(() => setIsLoading(false));
-  }
+  };
 
   return (
     <div
